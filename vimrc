@@ -88,10 +88,19 @@ nmap <leader>gc :Gcommit<cr>
 " Automatic fold settings for specific files. Uncomment to use.
 " autocmd FileType ruby setlocal foldmethod=syntax
 " autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
-set foldlevelstart=20
+" set foldlevelstart=20
 
 " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 
+let &t_Co=256
+
 " :w!! reopens the file as sudo and saves it
 cmap w!! %!sudo tee > /dev/null %
+
+" macvim use same color scheme
+
+let macvim_skip_colorscheme = 1
+
+set autochdir
+set tags=./tags,tags;
