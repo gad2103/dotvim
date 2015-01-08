@@ -41,9 +41,12 @@ set mouse=a                       " mouse support
 
 set clipboard=unnamed             " use system clipboard
 
+set swapfile
+set dir=/usr/local/tmp
+
 " UNCOMMENT TO USE
-set tabstop=2                    " Global tab width.
-set shiftwidth=2                 " And again, related.
+set tabstop=4                    " Global tab width.
+set shiftwidth=4                 " And again, related.
 set expandtab                    " Use spaces instead of tabs
 
 set laststatus=2                  " Show the status line all the time
@@ -59,8 +62,8 @@ colorscheme topfunky-light
 let mapleader=","
 
 " use FuzzyFinder
-map <leader>t :FufCoverageFile<cr>
-map <leader>b :FufBuffer<cr>
+" map <leader>t :FufCoverageFile<cr>
+" map <leader>b :FufBuffer<cr>
 " nicer colors for popup menu
 highlight Pmenu ctermfg=1 ctermbg=4 guibg=grey30
 
@@ -91,7 +94,7 @@ nmap <leader>gc :Gcommit<cr>
 " set foldlevelstart=20
 
 " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
-autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+" autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 
 let &t_Co=256
 
@@ -104,3 +107,29 @@ let macvim_skip_colorscheme = 1
 
 set autochdir
 set tags=./tags,tags;
+
+" Close the scratch preview window after selection
+autocmd CursorMovedI *  if pumvisible() == 0|silent! pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif
+
+" javascript-libraries-syntax shit
+let g:used_javascript_libs = 'underscore,backbone,angularjs,angularui,requirejs,jasmine'
+
+" php autocomplete
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+
+" wrap strings in __()
+:vmap tg di_(<ESC>pa)<ESC>
+
+" json stuff
+let g:vim_json_syntax_conceal = 0
+let g:vim_json_warnings=0
+
+:runtime macros/matchit.vim
+
+" Mustache/handlebars syntax shit
+let g:mustache_abbreviations = 1
+
+" Jade templating tab shit
+autocmd FileType jade set tabstop=2 shiftwidth=2
+
